@@ -48,9 +48,7 @@ public:
         _size++;
     }
 
-    T top() const {
-        return head->_data;
-    }
+    T top() const { return head->_data; }
 
     void pop() {
         if (head == nullptr)
@@ -86,13 +84,9 @@ public:
         throw std::out_of_range("error: out of scope");
     }
 
-    unsigned size() const {
-        return _size;
-    }
+    unsigned size() const { return _size; }
 
-    bool isEmpty() const {
-        return _size > 0 ? true : false;
-    }
+    bool isEmpty() const { return _size > 0 ? true : false; }
 };
 
 #endif
