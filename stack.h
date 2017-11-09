@@ -20,7 +20,15 @@ public:
     }
 
     ~Stack() {
-        delete head;
+        Node *current = head, *next;
+
+        while (current != nullptr) {
+            next = current->next;
+            delete current;
+            current = next;
+        }
+
+        head = nullptr;
     }
 
     void push(const T data) {
@@ -54,11 +62,8 @@ public:
         }
 
         else {
-            Node *newNode = new Node;
-            newNode = head;
-
+            Node *newNode = head;
             head = head->next;
-
             delete newNode;
         }
 
@@ -66,10 +71,8 @@ public:
     }
 
     const T operator[] (const unsigned index) const {
+        Node *tempNode = head;
         unsigned itr = 0;
-
-        Node *tempNode = new Node;
-        tempNode = head;
 
         do {
             if (index == itr)
