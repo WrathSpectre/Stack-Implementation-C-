@@ -65,6 +65,24 @@ public:
         _size--;
     }
 
+    const T operator[] (const unsigned index) const {
+        unsigned itr = 0;
+
+        Node *tempNode = new Node;
+        tempNode = head;
+
+        do {
+            if (index == itr)
+                return tempNode->_data;
+
+            tempNode = tempNode->next;
+            itr++;
+
+        } while (tempNode->next != nullptr);
+
+        throw std::out_of_range("error: out of scope");
+    }
+
     unsigned size() const {
         return _size;
     }
