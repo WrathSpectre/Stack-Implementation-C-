@@ -1,7 +1,7 @@
 #ifndef STACK_H
 #define STACK_H
 
-template<class T>
+template <typename T>
 class Stack {
 
 private:
@@ -48,7 +48,12 @@ public:
         _size++;
     }
 
-    T top() const { return head->_data; }
+    T top() const {
+        if (head == nullptr)
+            throw std::runtime_error("error: empty stack");
+            
+        return head->_data;
+    }
 
     void pop() {
         if (head == nullptr)
@@ -68,30 +73,31 @@ public:
         _size--;
     }
 
-    const T &operator[] (const unsigned index) const {
-        Node *tempNode = head;
-        unsigned itr = 0;
+    const T &operator[](const unsigned index) const {
+       if (head == nullptr)
+            throw std::runtime_error("error: empty queue");
 
-        do {
-            if (index == itr)
-                return tempNode->_data;
+        else if (index >= _size)
+            throw std::out_of_range("error: out of scope");
 
-            tempNode = tempNode->next;
-            itr++;
+        else {
+            Node *temp = head;
 
-        } while (tempNode->next != nullptr);
+            for (unsigned itr = 0; itr < index; ++itr)
+                temp = temp->next;
 
-        throw std::out_of_range("error: out of scope");
+            return temp->_data;
+            delete temp;
+        }
     }
 
-    unsigned size() const { 
-        return _size; 
+    unsigned size() const {
+        return _size;
     }
 
-    bool isEmpty() const { 
-        return _size > 0 ? true : false; 
+    bool isEmpty() const {
+        return _size > 0 ? true : false;
     }
-    
 };
 
 #endif
