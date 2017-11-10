@@ -68,7 +68,7 @@ public:
         _size--;
     }
 
-    const T operator[] (const unsigned index) const {
+    const T &operator[] (const unsigned index) const {
         Node *tempNode = head;
         unsigned itr = 0;
 
@@ -84,9 +84,14 @@ public:
         throw std::out_of_range("error: out of scope");
     }
 
-    unsigned size() const { return _size; }
+    unsigned size() const { 
+        return _size; 
+    }
 
-    bool isEmpty() const { return _size > 0 ? true : false; }
+    bool isEmpty() const { 
+        return _size > 0 ? true : false; 
+    }
+    
 };
 
 #endif
