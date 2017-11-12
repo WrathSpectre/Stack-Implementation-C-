@@ -6,17 +6,17 @@ class Stack {
 
 private:
     struct Node {
-        T _data;
+        T data;
         Node *next;
     };
 
     Node *head;
-    unsigned _size;
+    unsigned size;
 
 public:
     Stack() {
         head = nullptr;
-        _size = 0;
+        size = 0;
     }
 
     ~Stack() {
@@ -31,28 +31,28 @@ public:
         head = nullptr;
     }
 
-    void push(const T data) {
+    void push(const T _data) {
         if (head == nullptr) {
             head = new Node;
-            head->_data = data;
+            head->_data = _data;
             head->next = nullptr;
         }
 
         else {
             Node *newNode = new Node;
-            newNode->_data = data;
+            newNode->data = _data;
             newNode->next = head;
             head = newNode;
         }
 
-        _size++;
+        size++;
     }
 
     T top() const {
         if (head == nullptr)
             throw std::runtime_error("error: empty stack");
             
-        return head->_data;
+        return head->data;
     }
 
     void pop() {
@@ -70,7 +70,7 @@ public:
             delete newNode;
         }
 
-        _size--;
+        size--;
     }
 
     const T &operator[](const unsigned index) const {
@@ -86,17 +86,17 @@ public:
             for (unsigned itr = 0; itr < index; ++itr)
                 temp = temp->next;
 
-            return temp->_data;
+            return temp->data;
             delete temp;
         }
     }
 
     unsigned size() const {
-        return _size;
+        return size;
     }
 
     bool isEmpty() const {
-        return _size > 0 ? true : false;
+        return size > 0 ? true : false;
     }
 };
 
